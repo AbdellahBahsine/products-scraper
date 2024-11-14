@@ -1,14 +1,13 @@
+require('dotenv').config();
+
 const express = require('express');
+const mongoose = require('./db');
 
 const app = express();
 
-const port = 3000;
+const port = process.env.PORT || 8000;
 
-app.get("/", (req, res) => {
-    res.send("Hello world");
-});
-
-const scraper = require('./routes/scraper');
+const scraper = require('./routes/scraperRoutes');
 
 app.use('/api', scraper);
 
