@@ -24,12 +24,21 @@ After installing Puppeteer, I faced another hurdle: Amazon's anti-bot mechanisms
 A significant challenge was deciding which selectors to use for scraping. Through experimentation, I found that **data attributes** were often the most stable and reliable choice, so I prioritized them when available. As a fallback, I used **class names**. However, I quickly realized that both data attributes and class names are prone to changes as the website’s structure evolves. To address this, I concluded that it’s essential to **regularly test** the scraper to ensure it remains functional over time.
 
 ## How to Run the Project
+To run products scraper locally, follow these steps:
 
 1. **Clone the Repository**
     ```bash
     git clone https://github.com/AbdellahBahsine/products-scraper.git
     cd products-scraper
     ```
+2. **Create a .env file in both api and frontend folders and add the necessary environment variables:**
+   
+    frontend .env:
+    - VITE_API_URL=http://localhost:8000
+      
+    api .env:
+    - FRONTEND_URL=http://localhost:5173 (This depends on the port that vite runs on)
+    - MONGODB_URL=(mongodb atlas url to save data to your database)
 
 2. **Install Dependencies**
     ```bash
@@ -38,6 +47,11 @@ A significant challenge was deciding which selectors to use for scraping. Throug
 
 3. **Run the Scraper**
     ```bash
-    node server.js
+    npm run start
     ```
+4. **Open your browser and navigate to http://localhost:5173 (depends on the port that vite runs on) to view the app.**
 
+## Usage
+- The web app contains only one page which shows 8 scraped products and a load more button that adds 8 more products each time you click on it until there is none.
+- There is two buttons at the top of the page to navigate between two categories: Printers and Monitors
+- There is also a button to re-scrape products from Amazon. Data is scraped only once a day, and it gets updated in database.
