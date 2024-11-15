@@ -24,6 +24,10 @@ After installing Puppeteer, I faced another hurdle: Amazon's anti-bot mechanisms
 A significant challenge was deciding which selectors to use for scraping. Through experimentation, I found that **data attributes** were often the most stable and reliable choice, so I prioritized them when available. As a fallback, I used **class names**. However, I quickly realized that both data attributes and class names are prone to changes as the website’s structure evolves. To address this, I concluded that it’s essential to **regularly test** the scraper to ensure it remains functional over time.
 
 ## How to Run the Project
+You can see the live app here: https://products-scraper-chi.vercel.app/
+
+or
+
 To run products scraper locally, follow these steps:
 
 1. **Clone the Repository**
@@ -41,17 +45,34 @@ To run products scraper locally, follow these steps:
     - MONGODB_URL=(mongodb atlas url to save data to your database)
 
 2. **Install Dependencies**
+
+   api dependenices install:
     ```bash
+    cd api
     npm install
     ```
 
-3. **Run the Scraper**
+    frontend dependencies install:
     ```bash
+    cd frontend
+    npm install
+
+4. **Run the Scraper**
+   
+   running frontend:
+    ```bash
+   cd frontend
+    npm run dev
+    ```
+   
+   running api:
+    ```bash
+    cd api
     npm run start
     ```
-4. **Open your browser and navigate to http://localhost:5173 (depends on the port that vite runs on) to view the app.**
+6. **Open your browser and navigate to http://localhost:5173 (depends on the port that vite runs on) to view the app.**
 
 ## Usage
 - The web app contains only one page which shows 8 scraped products and a load more button that adds 8 more products each time you click on it until there is none.
 - There is two buttons at the top of the page to navigate between two categories: Printers and Monitors
-- There is also a button to re-scrape products from Amazon. Data is scraped only once a day, and it gets updated in database.
+- There is also a button to re-scrape products from Amazon. Data is automatically scraped once a day unless someone clicked on this button, and it gets updated in database.
